@@ -9,11 +9,21 @@ class Vehicles extends Component
 {
     public $search = '';
     public $category = ''; // EV, Petrol, Diesel, or empty for All
+    public $from = '';
+    public $to = '';
 
     protected $queryString = [
         'search' => ['except' => ''],
         'category' => ['except' => ''],
+        'from' => ['except' => ''],
+        'to' => ['except' => ''],
     ];
+
+    public function clearDates()
+    {
+        $this->from = '';
+        $this->to = '';
+    }
 
     public function selectCategory($cat)
     {
@@ -23,6 +33,14 @@ class Vehicles extends Component
     public function searchFleet()
     {
         // Explicit search trigger action
+    }
+
+    protected function hasValidDateRange(): bool
+    {
+        $from = strtotime((string) $this->from);
+        $to = strtotime((string) $this->to);
+
+        return $from !== false && $to !== false && $to > $from;
     }
 
     public function render()
@@ -37,22 +55,21 @@ class Vehicles extends Component
                   ->orWhere('category', 'like', '%' . $searchTerm . '%');
             });
 
-            // If user selected a specific category tab, refine by category if results exist
-            if ($this->category) {
-                $categoryMatches = (clone $query)->where('category', $this->category)->exists();
-                if ($categoryMatches) {
-                    $query->where('category', $this->category);
-                }
-            }
-        } elseif ($this->category) {
+        }
+
+        if ($this->category) {
             $query->where('category', $this->category);
         }
 
-        // Fetch ALL matching cars
         $cars = $query->orderBy('id', 'asc')->get();
+
+        if ($this->hasValidDateRange()) {
+            $cars = $cars->filter(fn (Car $car) => $car->isDateRangeAvailable($this->from, $this->to))->values();
+        }
 
         return view('livewire.vehicles', [
             'cars' => $cars,
+            'filteringByDates' => $this->hasValidDateRange(),
         ])->layout('components.layouts.app', ['title' => 'Our Premium Fleet - Journey Begins Car Rental']);
     }
 }

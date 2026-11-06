@@ -1,6 +1,6 @@
 <div class="pb-20 bg-white">
 <!-- 1. Hero Section -->
-<section class="relative min-h-[90vh] flex items-center pt-12 pb-6 bg-slate-50 overflow-hidden"
+<section class="relative min-h-[90vh] flex items-center pt-28 pb-16 lg:pt-32 lg:pb-20 bg-slate-50 overflow-hidden"
     x-data="{
         activeSlide: 0,
         slides: [
@@ -43,22 +43,22 @@
     <div class="absolute inset-0 bg-white/30 lg:bg-transparent z-10 pointer-events-none"></div>
 
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         <!-- Hero Text -->
-        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left animate-fade-in-up">
             <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-600 text-xs font-semibold uppercase tracking-wider bg-white/85 backdrop-blur-sm font-outfit">
                 <span>✨ Premium Car Rental Services</span>
             </div>
-           <h1 class="font-outfit font-extrabold text-3xl sm:text-4xl lg:text-4xl leading-tight text-slate-900">
+           <h1 class="font-outfit font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-slate-900">
     Drive your perfect journey
     <br class="hidden sm:inline">
     <span class="text-[#FF6800]">With Journey Begins</span>
 </h1>
             <p class="text-base sm:text-lg text-slate-700 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
-                Explore Nepal with ease, comfort, and realiability. Whether you're headed for a weekend getaway or a business trip, we've got the perfect ride for you.
+                Explore Nepal with ease, comfort, and reliability. Whether you're headed for a weekend getaway or a business trip, we've got the perfect ride for you.
         </p>
             <div class="flex flex-wrap justify-center lg:justify-start gap-4">
-                <a href="{{ route('vehicles.index') }}" class="px-8 py-3.5 bg-orange-500 text-white font-bold rounded-xl hover:bg-orange-600 transition shadow-lg shadow-orange-500/20">
+                <a href="{{ route('vehicles.index') }}" class="btn-shine px-8 py-3.5 bg-orange-500 text-white font-bold rounded-xl hover:bg-orange-600 hover:-translate-y-0.5 transition shadow-lg shadow-orange-500/20">
                     Explore Cars
                 </a>
                 <a href="{{ route('services') }}" class="px-8 py-3.5 bg-white/90 border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-100 transition backdrop-blur-sm">
@@ -68,13 +68,13 @@
         </div>
 
         <!-- Spacer to push text to the left and expose background image on the right -->
-        <div class="lg:col-span-5 h-[150px] lg:h-[400px] pointer-events-none"></div>
+        <div class="hidden lg:block lg:col-span-5 lg:h-[340px] pointer-events-none"></div>
 
         <!-- Search Card placed below hero text and spanning full width on large screens -->
-        <div class="lg:col-span-12 px-4">
+        <div class="lg:col-span-12 animate-fade-in-up [animation-delay:150ms]">
             <div class="max-w-6xl mx-auto">
-                <div class="bg-white border border-slate-200 rounded-[2rem] p-6 shadow-xl shadow-slate-100/80">
-                    <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 items-end" @submit.prevent="search">
+                <div class="bg-white/95 backdrop-blur border border-slate-200 rounded-3xl p-5 sm:p-6 shadow-xl shadow-slate-200/60">
+                    <form class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 items-end" wire:submit="search">
                         <!-- Pickup Location -->
                         <div class="space-y-1.5">
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Pickup Location</label>
@@ -82,7 +82,7 @@
                                 <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 </span>
-                                <input type="text" wire:model.live="pickup_location" placeholder="Enter location" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
+                                <input type="text" wire:model="pickup_location" placeholder="Enter location" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@
                                 <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 </span>
-                                <input type="text" wire:model.live="dropoff_location" placeholder="Enter location" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
+                                <input type="text" wire:model="dropoff_location" placeholder="Enter location" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
                             </div>
                         </div>
 
@@ -122,8 +122,8 @@
                         <!-- Car Type -->
                         <div class="space-y-1.5">
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Car Type</label>
-                            <select wire:model.live="car_type" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm text-slate-800 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
-                                <option value="All">Select Car</option>
+                            <select wire:model="car_type" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm text-slate-800 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
+                                <option value="">All Types</option>
                                 <option value="Petrol">Petrol</option>
                                 <option value="Diesel">Diesel</option>
                                 <option value="EV">EV (Electric)</option>
@@ -131,9 +131,9 @@
                         </div>
 
                         <!-- Search Button -->
-                        <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-transparent select-none uppercase tracking-wider block">&nbsp;</label>
-                            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm rounded-xl py-3 px-4 flex items-center justify-center gap-2 transition duration-200 shadow-lg shadow-orange-500/30">
+                        <div class="space-y-1.5 sm:col-span-2 lg:col-span-1">
+                            <label class="hidden lg:block text-xs font-semibold text-transparent select-none uppercase tracking-wider">&nbsp;</label>
+                            <button type="submit" wire:loading.attr="disabled" class="btn-shine w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-70 text-white font-semibold text-sm rounded-xl py-3 px-4 flex items-center justify-center gap-2 transition duration-200 shadow-lg shadow-orange-500/30">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                                 Search Cars
                             </button>
@@ -145,21 +145,21 @@
     </div>
 
     <!-- Navigation Arrows -->
-    <button @click="prev()" class="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-2xl bg-white/90 hover:bg-orange-500 hover:text-white text-slate-800 transition duration-300 shadow-lg hover:shadow-orange-500/10 z-20 border border-slate-100">
+    <button @click="prev()" aria-label="Previous slide" class="hidden lg:flex absolute left-4 top-[38%] -translate-y-1/2 p-3 rounded-2xl bg-white/90 hover:bg-orange-500 hover:text-white text-slate-800 transition duration-300 shadow-lg hover:shadow-orange-500/10 z-20 border border-slate-100">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
         </svg>
     </button>
-    <button @click="next()" class="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-2xl bg-white/90 hover:bg-orange-500 hover:text-white text-slate-800 transition duration-300 shadow-lg hover:shadow-orange-500/10 z-20 border border-slate-100">
+    <button @click="next()" aria-label="Next slide" class="hidden lg:flex absolute right-4 top-[38%] -translate-y-1/2 p-3 rounded-2xl bg-white/90 hover:bg-orange-500 hover:text-white text-slate-800 transition duration-300 shadow-lg hover:shadow-orange-500/10 z-20 border border-slate-100">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
         </svg>
     </button>
 
     <!-- Slide Indicators -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex space-x-2.5">
+    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex space-x-2.5">
         <template x-for="(slide, index) in slides" :key="index">
-            <button @click="activeSlide = index"
+            <button @click="activeSlide = index" :aria-label="'Go to slide ' + (index + 1)"
                     class="h-2.5 rounded-full transition-all duration-300 focus:outline-none"
                     :class="activeSlide === index ? 'w-10 bg-orange-500 shadow-md shadow-orange-500/30' : 'w-2.5 bg-slate-400 hover:bg-slate-600'"></button>
         </template>
@@ -302,16 +302,7 @@
                     <div class="flex-shrink-0 w-[290px] sm:w-[340px] snap-start bg-white border border-slate-150 rounded-[2rem] overflow-hidden hover:scale-[1.01] hover:shadow-lg transition duration-350 flex flex-col group shadow-md">
                         <!-- Image container -->
                         <div class="h-52 bg-slate-50 relative overflow-hidden flex items-center justify-center border-b border-slate-100">
-                            @if($car->image_path && file_exists(public_path('storage/cars/' . $car->image_path)))
-                                <img src="{{ asset('storage/cars/' . $car->image_path) }}" alt="{{ $car->name }}" class="w-full h-full object-cover group-hover:scale-105 group-hover:translate-x-3 group-hover:-translate-y-1 transition-transform duration-500">
-                            @else
-                                <div class="absolute inset-0 bg-gradient-to-tr from-slate-50 via-slate-100 to-orange-50/20 flex flex-col items-center justify-center">
-                                    <svg class="w-20 h-20 text-orange-500/10 group-hover:text-orange-500/20 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124l-.317-5.072a3 3 0 0 0-2.997-2.812h-9.39A3 3 0 0 0 5.68 8.016l-.347 5.56m14.388 3.93-1.9-5.7m-12.7 5.7 1.9-5.7m0 0h10.8" />
-                                    </svg>
-                                    <span class="text-xs font-semibold uppercase tracking-widest text-orange-500/20 mt-2">Journey Begins</span>
-                                </div>
-                            @endif
+                            <img src="{{ $car->image_url }}" alt="{{ $car->name }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 group-hover:translate-x-3 group-hover:-translate-y-1 transition-transform duration-500">
                             
                             <!-- Badges overlay -->
                             <div class="absolute top-4 left-4 flex space-x-2">
@@ -535,45 +526,35 @@
         </div>
     </section>
 
-    <!-- 7. App Download Banner -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 overflow-hidden">
-        <div class="bg-gradient-to-tr from-[#0a1b2d] to-[#0f294a] rounded-[2.5rem] p-12 lg:p-16 relative overflow-hidden shadow-2xl gsap-reveal">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+    <!-- 7. Quick Booking Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 lg:mt-24">
+        <div class="bg-gradient-to-tr from-[#0a1b2d] to-[#0f294a] rounded-[2.5rem] p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl gsap-reveal">
+            <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-orange-500/20 blur-3xl animate-pulse-glow pointer-events-none"></div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
                 <div class="space-y-6 text-left">
-                    <h2 class="font-outfit font-extrabold text-4xl sm:text-5xl text-white leading-tight">
-                        Download Rentcars App for FREE
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-orange-500/15 text-orange-300 text-[11px] font-extrabold uppercase tracking-widest">Book in under 2 minutes</span>
+                    <h2 class="font-outfit font-extrabold text-3xl sm:text-5xl text-white leading-tight">
+                        Your car is one message away
                     </h2>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        For faster, easier booking and exclusive deals. Get the mobile app now and unlock 10% off your first ride.
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-lg">
+                        Pick a car online or simply message us on WhatsApp. We confirm availability instantly and deliver to the airport, your hotel or your doorstep.
                     </p>
-                    <div class="flex flex-wrap gap-4 pt-2">
-                        <button class="px-6 py-3 bg-slate-950/80 border border-slate-800 hover:border-orange-500 rounded-2xl flex items-center space-x-3 text-left transition duration-200 group">
-                            <svg class="w-6 h-6 text-slate-400 group-hover:text-orange-500" fill="currentColor" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C3.79 16.36 3.31 9.4 6.81 5.92c1.7-1.7 3.52-1.63 4.88-.95 1 .5 1.95.42 2.92 0 1.5-.66 3.12-.9 4.54.52 3.06 2.62 2.25 8.2 2.25 8.2-1.8 1.15-1.58 3.55.6 4.7 1.5 1 2.28 2.25 1.05 4.39M15.42 4.4a4.8 4.8 0 011.08-3.4 4.87 4.87 0 013.3 1.7 4.56 4.56 0 01-1.08 3.32 4.6 4.6 0 01-3.3-1.62z"/></svg>
-                            <div>
-                                <span class="text-[10px] text-slate-500 uppercase tracking-widest block">Download on the</span>
-                                <span class="font-bold text-white text-sm">App Store</span>
-                            </div>
-                        </button>
-                        <button class="px-6 py-3 bg-slate-950/80 border border-slate-800 hover:border-orange-500 rounded-2xl flex items-center space-x-3 text-left transition duration-200 group">
-                            <svg class="w-6 h-6 text-slate-400 group-hover:text-orange-500" fill="currentColor" viewBox="0 0 24 24"><path d="M5.3 2.1c-.2.2-.3.6-.3 1v17.8c0 .4.1.8.3 1l10-10L5.3 2.1zm11.2 9.2l3 1.7c.8.5.8 1.3 0 1.8l-3 1.7-2.6-2.6 2.6-2.6zM6.1 2.4l9.3 9.3-2.3 2.3-7-11.6zM6.1 21.6l7-11.6 2.3 2.3-9.3 9.3z"/></svg>
-                            <div>
-                                <span class="text-[10px] text-slate-500 uppercase tracking-widest block">Get it on</span>
-                                <span class="font-bold text-white text-sm">Google Play</span>
-                            </div>
-                        </button>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <a href="{{ route('vehicles.index') }}" class="btn-shine px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm rounded-xl shadow-lg shadow-orange-500/30 transition hover:-translate-y-0.5">Browse the Fleet</a>
+                        <a href="https://wa.me/{{ config('services.whatsapp.number') }}" target="_blank" rel="noopener" class="px-6 py-3.5 bg-white/10 border border-white/15 hover:bg-white/15 text-white font-bold text-sm rounded-xl transition flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                            Chat on WhatsApp
+                        </a>
                     </div>
                 </div>
-                
-                <!-- Graphic Representation of Phone -->
-                <div class="relative h-72 hidden lg:flex items-center justify-center">
-                    <div class="w-48 h-64 bg-slate-950 rounded-[2rem] border-4 border-slate-800 shadow-2xl p-3 relative overflow-hidden flex flex-col justify-between">
-                        <div class="h-4 w-20 bg-slate-800 rounded-full mx-auto mb-2"></div>
-                        <div class="flex-grow bg-slate-900 rounded-2xl flex items-center justify-center p-4 border border-slate-800/80">
-                            <svg class="w-12 h-12 text-orange-500/50 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                            </svg>
+
+                <div class="grid grid-cols-3 gap-3 sm:gap-4">
+                    @foreach ([['13+', 'Cars in fleet'], ['24/7', 'Roadside support'], ['4.9', 'Average rating']] as [$stat, $label])
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4 sm:p-6 text-center hover:bg-white/10 hover:-translate-y-1 transition duration-300">
+                            <div class="font-outfit font-extrabold text-2xl sm:text-4xl text-white">{{ $stat }}</div>
+                            <div class="text-[11px] sm:text-xs text-slate-400 mt-1">{{ $label }}</div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

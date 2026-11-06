@@ -7,7 +7,7 @@ use App\Models\Car;
 use App\Models\PricingTier;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,16 +21,12 @@ class DatabaseSeeder extends Seeder
             ['email' => 'admin@journeybegins.com'],
             [
                 'name' => 'Journey Admin',
-                'password' => Hash::make('admin123'),
+                'password' => Hash::make(env('ADMIN_PASSWORD', Str::random(24))),
                 'is_admin' => true,
             ]
         );
 
-        // Truncate tables to re-seed only the correct fleet
-        Schema::disableForeignKeyConstraints();
-        Car::truncate();
-        PricingTier::truncate();
-        Schema::enableForeignKeyConstraints();
+        $this->call(TestimonialSeeder::class);
 
         // 13 Cars with Tiers based on spreadsheet image
         $carsData = [
@@ -42,7 +38,7 @@ class DatabaseSeeder extends Seeder
                 'seats' => 5,
                 'mileage_or_range' => '400+ km EV',
                 'color' => 'White',
-                'image_path' => 'jaecoo_j5.jpg',
+                'image_path' => 'jaecoo.jpg',
                 'is_featured' => true,
                 'pricing' => [
                     'daily_rate' => 9000.00,
@@ -59,7 +55,7 @@ class DatabaseSeeder extends Seeder
                 'seats' => 5,
                 'mileage_or_range' => '400+ km EV',
                 'color' => 'Blue/Grey/Green',
-                'image_path' => 'atto3.jpg',
+                'image_path' => 'bydatto3blue.png',
                 'is_featured' => true,
                 'pricing' => [
                     'daily_rate' => 8000.00,

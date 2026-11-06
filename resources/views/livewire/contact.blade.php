@@ -1,4 +1,4 @@
-<div class="bg-[#f8fafc] min-h-screen pt-24 pb-20">
+<div class="bg-[#f8fafc] min-h-screen pt-10 lg:pt-14 pb-20">
     <!-- 1. Hero Header Section (Matching Reference Screenshot) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -56,7 +56,7 @@
             <div class="lg:col-span-5 space-y-4">
                 
                 <!-- WhatsApp Card -->
-                <a href="https://wa.me/9779840002796" target="_blank" rel="noopener"
+                <a href="https://wa.me/{{ config('services.whatsapp.number') }}" target="_blank" rel="noopener"
                    class="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition duration-200 block group relative">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-4">
@@ -118,7 +118,7 @@
             </div>
 
             <!-- Right Interactive Contact Form (Matching Reference Screenshot) -->
-            <div class="lg:col-span-7 bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-10 shadow-xl relative">
+            <div class="lg:col-span-7 bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-xl relative">
                 <h2 class="font-outfit font-extrabold text-2xl text-slate-900 mb-1">Send a Message</h2>
                 <p class="text-xs text-slate-400 font-medium mb-6">Fill out the form below and our team will get back to you within 2 business hours.</p>
 
@@ -179,8 +179,8 @@
 
                         <!-- Black Submit Button Matching Reference Screenshot -->
                         <div class="pt-2">
-                            <button type="submit" wire:click="submit" class="px-8 py-3.5 bg-black hover:bg-slate-800 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg transition duration-200 flex items-center gap-2">
-                                <span>SEND MESSAGE</span>
+                            <button type="submit" wire:loading.attr="disabled" class="btn-shine w-full sm:w-auto justify-center px-8 py-3.5 bg-slate-900 hover:bg-orange-500 disabled:opacity-70 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg transition duration-200 flex items-center gap-2">
+                                <span wire:loading.remove wire:target="submit">SEND MESSAGE</span><span wire:loading wire:target="submit">SENDING...</span>
                                 <span class="text-[10px]">⯈</span>
                             </button>
                         </div>
@@ -190,7 +190,7 @@
         </div>
 
         <!-- 3. Bottom "Visit our Hubs" & Map Section (Matching Reference Screenshot) -->
-        <div class="bg-slate-100/70 border border-slate-200/80 rounded-[2.5rem] p-8 sm:p-12 shadow-sm max-w-7xl mx-auto">
+        <div class="mt-16 bg-slate-100/70 border border-slate-200/80 rounded-[2.5rem] p-6 sm:p-10 lg:p-12 shadow-sm gsap-reveal">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 
                 <!-- Left Text Content -->
@@ -231,7 +231,8 @@
                 <div class="lg:col-span-7 relative">
                     <div class="bg-slate-200 border-4 border-white shadow-2xl rounded-3xl overflow-hidden relative h-[360px] group">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.31713618835!2d85.312326!3d27.717245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c15655424f1!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" 
+                            src="https://maps.google.com/maps?q=Siddhapokhari%2C%20Bhaktapur%2C%20Nepal&z=13&output=embed"
+                            title="Journey Begins hubs map" 
                             class="w-full h-full border-0 filter contrast-105 group-hover:scale-[1.02] transition duration-700" 
                             allowfullscreen="" 
                             loading="lazy" 
@@ -240,7 +241,7 @@
 
                         <!-- Bottom-right status badge overlay -->
                         <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-xl px-3.5 py-1.5 shadow-lg text-[10px] font-extrabold text-slate-800 flex items-center gap-2 z-10">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span class="relative flex w-2 h-2"><span class="absolute inline-flex w-full h-full rounded-full bg-emerald-400 animate-ping"></span><span class="relative inline-flex w-2 h-2 rounded-full bg-emerald-500"></span></span>
                             <span>ALL BRANCHES ACTIVE</span>
                         </div>
                     </div>
@@ -250,4 +251,69 @@
         </div>
 
     </div>
+
+    <!-- 4. FAQ -->
+    <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
+        <div class="text-center mb-10 gsap-reveal">
+            <span class="text-[11px] font-extrabold text-orange-600 uppercase tracking-widest">Good to know</span>
+            <h2 class="font-outfit font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2">Frequently Asked Questions</h2>
+            <p class="text-slate-500 text-sm mt-3">Quick answers about renting with Journey Begins.</p>
+        </div>
+        <div class="space-y-3 gsap-stagger-container">
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition gsap-stagger-item" x-data="{ open: true }">
+                    <button type="button" @click="open = !open" class="w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-4" :aria-expanded="open">
+                        <span class="font-outfit font-bold text-sm sm:text-base text-slate-900">What documents do I need to rent a self-drive car?</span>
+                        <span class="w-8 h-8 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center flex-shrink-0 transition-transform duration-300" :class="open && 'rotate-45 bg-orange-500 text-white'">+</span>
+                    </button>
+                    <div x-show="open" x-collapse.duration.300ms x-cloak>
+                        <p class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed">A valid driving licence (Nepali or international permit), a citizenship card or passport, and a refundable security deposit. We confirm everything on WhatsApp before pickup.</p>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition gsap-stagger-item" x-data="{ open: false }">
+                    <button type="button" @click="open = !open" class="w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-4" :aria-expanded="open">
+                        <span class="font-outfit font-bold text-sm sm:text-base text-slate-900">Can I rent a car with a driver?</span>
+                        <span class="w-8 h-8 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center flex-shrink-0 transition-transform duration-300" :class="open && 'rotate-45 bg-orange-500 text-white'">+</span>
+                    </button>
+                    <div x-show="open" x-collapse.duration.300ms x-cloak>
+                        <p class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed">Yes. Every vehicle in our fleet can be booked with an experienced, English-speaking driver for city trips, highway tours and airport transfers.</p>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition gsap-stagger-item" x-data="{ open: false }">
+                    <button type="button" @click="open = !open" class="w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-4" :aria-expanded="open">
+                        <span class="font-outfit font-bold text-sm sm:text-base text-slate-900">How do long-term discounts work?</span>
+                        <span class="w-8 h-8 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center flex-shrink-0 transition-transform duration-300" :class="open && 'rotate-45 bg-orange-500 text-white'">+</span>
+                    </button>
+                    <div x-show="open" x-collapse.duration.300ms x-cloak>
+                        <p class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed">Rates are applied automatically by duration: daily, weekly (7+ days), bi-weekly (15+ days) and monthly (30+ days). The booking calculator shows your exact total before you confirm.</p>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition gsap-stagger-item" x-data="{ open: false }">
+                    <button type="button" @click="open = !open" class="w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-4" :aria-expanded="open">
+                        <span class="font-outfit font-bold text-sm sm:text-base text-slate-900">Do you deliver cars to the airport or my hotel?</span>
+                        <span class="w-8 h-8 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center flex-shrink-0 transition-transform duration-300" :class="open && 'rotate-45 bg-orange-500 text-white'">+</span>
+                    </button>
+                    <div x-show="open" x-collapse.duration.300ms x-cloak>
+                        <p class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed">We offer pickup and drop-off at Tribhuvan International Airport and across Kathmandu, Lalitpur and Bhaktapur. Delivery to other cities can be arranged on request.</p>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition gsap-stagger-item" x-data="{ open: false }">
+                    <button type="button" @click="open = !open" class="w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-4" :aria-expanded="open">
+                        <span class="font-outfit font-bold text-sm sm:text-base text-slate-900">What is your cancellation policy?</span>
+                        <span class="w-8 h-8 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center flex-shrink-0 transition-transform duration-300" :class="open && 'rotate-45 bg-orange-500 text-white'">+</span>
+                    </button>
+                    <div x-show="open" x-collapse.duration.300ms x-cloak>
+                        <p class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed">Pending bookings can be cancelled for free from your dashboard. For confirmed bookings, contact us at least 24 hours before pickup and we will help you reschedule or cancel.</p>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition gsap-stagger-item" x-data="{ open: false }">
+                    <button type="button" @click="open = !open" class="w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-4" :aria-expanded="open">
+                        <span class="font-outfit font-bold text-sm sm:text-base text-slate-900">How do I charge an EV during my trip?</span>
+                        <span class="w-8 h-8 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center flex-shrink-0 transition-transform duration-300" :class="open && 'rotate-45 bg-orange-500 text-white'">+</span>
+                    </button>
+                    <div x-show="open" x-collapse.duration.300ms x-cloak>
+                        <p class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed">Our EVs come fully charged with a charging cable. We share a list of fast-charging stations along your route so you never run out of range.</p>
+                    </div>
+                </div>
+        </div>
+    </section>
 </div>

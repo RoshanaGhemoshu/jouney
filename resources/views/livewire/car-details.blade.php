@@ -1,4 +1,4 @@
-<div class="bg-[#f8fafc] min-h-screen pt-24 pb-20" x-data="{ open: @entangle('show_booking_modal') }">
+<div class="bg-[#f8fafc] min-h-screen pt-8 lg:pt-12 pb-20" x-data="{ open: @entangle('show_booking_modal') }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Back Navigation Link -->
@@ -18,13 +18,7 @@
                 <!-- Hero Car Image Card -->
                 <div class="bg-white border border-slate-200/90 rounded-[2rem] overflow-hidden relative shadow-lg">
                     <div class="h-[360px] sm:h-[420px] bg-slate-100 flex items-center justify-center relative">
-                        @if($car->image_path && file_exists(public_path('storage/cars/' . $car->image_path)))
-                            <img src="{{ asset('storage/cars/' . $car->image_path) }}" alt="{{ $car->name }}" class="w-full h-full object-cover">
-                        @elseif($car->image_path && file_exists(public_path('images/' . $car->image_path)))
-                            <img src="{{ asset('images/' . $car->image_path) }}" alt="{{ $car->name }}" class="w-full h-full object-cover">
-                        @else
-                            <img src="{{ asset('images/hero/hero1.png') }}" class="w-full h-full object-cover" alt="{{ $car->name }}">
-                        @endif
+                        <img src="{{ $car->image_url }}" alt="{{ $car->name }}" loading="lazy" class="w-full h-full object-cover">
                         
                         <!-- Top Left Badges -->
                         <div class="absolute top-5 left-5 flex gap-2">
@@ -160,15 +154,21 @@
                             </div>
 
                             <!-- DATES ROW -->
-                            <div class="grid grid-cols-2 gap-3">
-                                <div class="space-y-1" x-data x-init="flatpickr($refs.pickup, {dateFormat: 'Y-m-d', minDate: 'today'})">
+                            <div class="grid grid-cols-2 gap-3"
+                                 x-data="{ disabled: @js($unavailable_dates) }"
+                                 x-init="
+                                    const base = { dateFormat: 'Y-m-d', disable: disabled, disableMobile: true };
+                                    const ret = flatpickr($refs.return, { ...base, minDate: new Date().fp_incr(1), onChange: (_, value) => $wire.set('return_date', value) });
+                                    flatpickr($refs.pickup, { ...base, minDate: 'today', onChange: (dates, value) => { $wire.set('pickup_date', value); if (dates[0]) ret.set('minDate', new Date(dates[0]).fp_incr(1)); } });
+                                 ">
+                                <div class="space-y-1">
                                     <label class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest block">PICKUP DATE</label>
-                                    <input x-ref="pickup" type="text" wire:model.live="pickup_date" min="{{ date('Y-m-d') }}" data-date-role="pickup" data-unavailable-dates='@json($unavailable_dates)' class="flatpickr-input w-full bg-slate-100/80 border border-slate-200/70 rounded-xl py-2 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
+                                    <input x-ref="pickup" type="text" readonly wire:model="pickup_date" class="w-full bg-slate-100/80 border border-slate-200/70 rounded-xl py-2 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
                                     @error('pickup_date') <span class="text-xs font-bold text-red-500 block">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="space-y-1" x-data x-init="flatpickr($refs.return, {dateFormat: 'Y-m-d', minDate: 'today'})">
+                                <div class="space-y-1">
                                     <label class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest block">RETURN DATE</label>
-                                    <input x-ref="return" type="text" wire:model.live="return_date" min="{{ date('Y-m-d', strtotime('+1 day')) }}" data-date-role="return" data-unavailable-dates='@json($unavailable_dates)' class="flatpickr-input w-full bg-slate-100/80 border border-slate-200/70 rounded-xl py-2 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
+                                    <input x-ref="return" type="text" readonly wire:model="return_date" class="w-full bg-slate-100/80 border border-slate-200/70 rounded-xl py-2 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
                                     @error('return_date') <span class="text-xs font-bold text-red-500 block">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -274,28 +274,3 @@
     @endif
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const unavailableDates = @json($unavailable_dates);
-
-        const blockInvalidDate = (field) => {
-            const selectedDate = field.value;
-            if (!selectedDate || !unavailableDates.includes(selectedDate)) {
-                return;
-            }
-
-            field.setCustomValidity('This date is unavailable for this vehicle.');
-            field.reportValidity();
-            field.value = '';
-            return false;
-        };
-
-        document.querySelectorAll('[data-date-role]').forEach((field) => {
-            field.addEventListener('change', function () {
-                if (field.value && unavailableDates.includes(field.value)) {
-                    blockInvalidDate(field);
-                }
-            });
-        });
-    });
-</script>

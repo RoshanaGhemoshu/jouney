@@ -31,7 +31,7 @@
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         <span>Need Booking Assistance?</span>
                     </div>
-                    <p class="text-[11px] text-slate-300">Call or WhatsApp support: <a href="https://wa.me/9779840002796" target="_blank" class="text-white font-bold underline">+977 9840002796</a></p>
+                    <p class="text-[11px] text-slate-300">Call or WhatsApp support: <a href="https://wa.me/{{ config('services.whatsapp.number') }}" target="_blank" class="text-white font-bold underline">+977 9840002796</a></p>
                 </div>
             </div>
 

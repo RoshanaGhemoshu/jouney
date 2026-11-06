@@ -10,6 +10,7 @@ use App\Models\Testimonial;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class AdminDashboard extends Component
@@ -65,6 +66,10 @@ class AdminDashboard extends Component
     // --- Booking Management ---
     public function updateBookingStatus($id, $status)
     {
+        if (! in_array($status, ['pending', 'confirmed', 'completed', 'cancelled'], true)) {
+            abort(422, 'Invalid booking status.');
+        }
+
         $booking = Booking::findOrFail($id);
         $booking->update(['status' => $status]);
         session()->flash('message', "Booking status updated to {$status}.");

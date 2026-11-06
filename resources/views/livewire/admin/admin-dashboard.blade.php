@@ -158,7 +158,7 @@
                             <div class="pt-3 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-10 h-10 rounded-xl bg-slate-100 overflow-hidden border border-slate-200 flex-shrink-0">
-                                        <img src="{{ Str::startsWith($car->image_path, 'http') || Str::startsWith($car->image_path, '/') ? asset($car->image_path) : asset('storage/cars/' . $car->image_path) }}" class="w-full h-full object-cover" alt="{{ $car->name }}">
+                                        <img src="{{ $car->image_url }}" class="w-full h-full object-cover" alt="{{ $car->name }}">
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-sm text-slate-900">{{ $car->name }}</h4>
@@ -212,7 +212,7 @@
                                     <td class="py-4 px-4">
                                         <div class="flex items-center space-x-3">
                                             <div class="w-12 h-12 rounded-xl bg-slate-100 overflow-hidden border border-slate-200 flex-shrink-0">
-                                                <img src="{{ Str::startsWith($car->image_path, 'http') || Str::startsWith($car->image_path, '/') ? asset($car->image_path) : asset('storage/cars/' . $car->image_path) }}" class="w-full h-full object-cover" alt="{{ $car->name }}">
+                                                <img src="{{ $car->image_url }}" class="w-full h-full object-cover" alt="{{ $car->name }}">
                                             </div>
                                             <div>
                                                 <h4 class="font-bold text-slate-900 text-sm">{{ $car->name }}</h4>

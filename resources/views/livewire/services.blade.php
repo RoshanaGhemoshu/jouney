@@ -1,4 +1,4 @@
-<div class="bg-[#f8fafc] min-h-screen pt-24 pb-20">
+<div class="bg-[#f8fafc] min-h-screen pt-10 lg:pt-14 pb-20">
     <!-- 1. Hero Header Section -->
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 animate-fade-in-up">
         <div class="inline-flex items-center space-x-2 px-4 py-1.5 bg-orange-50 border border-orange-200/80 rounded-full text-orange-600 font-extrabold text-[11px] uppercase tracking-wider mb-4 shadow-sm">
@@ -32,27 +32,17 @@
 
     <!-- 2. Section Header & Grid Controls -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div class="flex items-center justify-between">
-            <div>
-                <h2 class="font-outfit font-extrabold text-3xl text-slate-900">Our Premium Offerings</h2>
-                <p class="text-slate-500 text-sm mt-0.5">Carefully curated services designed to meet the diverse needs of modern travelers, corporate entities, and special occasions.</p>
-            </div>
-            <div class="flex items-center space-x-2">
-                <button type="button" class="w-9 h-9 rounded-xl border border-slate-200 bg-white text-slate-600 flex items-center justify-center text-xs font-bold hover:bg-slate-100 transition shadow-sm">
-                    ≡
-                </button>
-                <button type="button" class="w-9 h-9 rounded-xl border border-slate-200 bg-white text-slate-600 flex items-center justify-center text-xs font-bold hover:bg-slate-100 transition shadow-sm">
-                    ⊞
-                </button>
-            </div>
+        <div class="max-w-2xl gsap-reveal">
+            <h2 class="font-outfit font-extrabold text-3xl text-slate-900">Our Premium Offerings</h2>
+            <p class="text-slate-500 text-sm mt-2">Carefully curated services designed to meet the diverse needs of modern travelers, corporate entities, and special occasions.</p>
         </div>
     </div>
 
     <!-- 3. Service Cards Grid (Inquire Now Button links to Contact Us Page) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 gsap-stagger-container">
             @foreach($services as $srv)
-                <div class="bg-white border border-slate-200/90 rounded-[2rem] p-7 shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+                <div class="bg-white border border-slate-200/90 rounded-[2rem] p-6 sm:p-7 shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group gsap-stagger-item">
                     <div>
                         <!-- Icon Box -->
                         <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mb-5 group-hover:bg-[#FF6800] group-hover:text-white transition duration-300 shadow-sm">
@@ -245,7 +235,7 @@
 
                     <!-- Centered Submit Button -->
                     <div class="text-center pt-2">
-                        <button type="submit" wire:click="submitInquiry" class="w-full sm:w-auto px-10 py-3.5 bg-[#FF6800] hover:bg-orange-600 text-white font-extrabold text-xs uppercase tracking-wider rounded-full shadow-lg shadow-orange-500/25 transition duration-200 inline-flex items-center justify-center gap-1.5">
+                        <button type="submit" class="w-full sm:w-auto px-10 py-3.5 bg-[#FF6800] hover:bg-orange-600 text-white font-extrabold text-xs uppercase tracking-wider rounded-full shadow-lg shadow-orange-500/25 transition duration-200 inline-flex items-center justify-center gap-1.5">
                             <span>SEND INQUIRY</span>
                             <span>→</span>
                         </button>

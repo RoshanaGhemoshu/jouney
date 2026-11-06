@@ -1,4 +1,4 @@
-<div class="bg-[#f8fafc] min-h-screen pt-24 pb-20">
+<div class="bg-[#f8fafc] min-h-screen pt-10 lg:pt-14 pb-20">
     <!-- 1. Hero Header Section (Matching Reference Design) -->
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12 animate-fade-in-up">
         <div class="inline-flex items-center space-x-2 px-4 py-1.5 bg-amber-50 border border-amber-200/80 rounded-full text-amber-800 font-extrabold text-[11px] uppercase tracking-wider mb-4 shadow-sm">
@@ -70,9 +70,9 @@
 
     <!-- 4. Testimonials Cards Grid (Exact Match to Screenshot) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             @forelse($testimonials as $item)
-                <div class="bg-white border border-slate-200/90 rounded-[2rem] p-7 shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+                <div wire:key="testimonial-{{ $loop->index }}-{{ $activeCategory }}" class="bg-white border border-slate-200/90 rounded-[2rem] p-6 sm:p-7 shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group animate-fade-in-up" style="animation-delay: {{ min($loop->index, 8) * 60 }}ms">
                     <div class="space-y-4">
                         <!-- Star Rating & Vehicle Badge -->
                         <div class="flex items-center justify-between">
@@ -95,8 +95,8 @@
                     <!-- Author Footer -->
                     <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
                         <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 rounded-full overflow-hidden border border-slate-200 bg-slate-100 flex-shrink-0 shadow-sm">
-                                <img src="{{ asset($item['avatar']) }}" class="w-full h-full object-cover" alt="{{ $item['name'] }}">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-white flex items-center justify-center flex-shrink-0 shadow-sm font-outfit font-bold text-sm" aria-hidden="true">
+                                {{ collect(explode(' ', $item['name']))->filter()->take(2)->map(fn ($part) => mb_substr($part, 0, 1))->implode('') }}
                             </div>
                             <div>
                                 <h4 class="font-outfit font-extrabold text-xs text-slate-900 leading-tight group-hover:text-[#FF6800] transition duration-200">{{ $item['name'] }}</h4>
@@ -136,7 +136,7 @@
                     <span>Browse All Cars</span>
                     <span>→</span>
                 </a>
-                <a href="https://wa.me/9779840002796" target="_blank" rel="noopener"
+                <a href="https://wa.me/{{ config('services.whatsapp.number') }}" target="_blank" rel="noopener"
                    class="px-6 py-3.5 bg-white border border-slate-300 text-slate-800 font-extrabold text-xs rounded-xl transition duration-200 hover:bg-slate-50 flex items-center gap-2 shadow-sm">
                     <span class="text-emerald-500 font-bold">💬</span>
                     <span>Chat on WhatsApp</span>

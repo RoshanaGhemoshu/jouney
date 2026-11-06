@@ -24,7 +24,7 @@ class Testimonials extends Component
         'name' => 'required|min:2|max:100',
         'role' => 'nullable|string|max:100',
         'car_model' => 'required|string|max:100',
-        'category' => 'required|string',
+        'category' => 'required|in:self_drive,ev,suv,with_driver',
         'rating' => 'required|integer|min:1|max:5',
         'review' => 'required|min:10|max:1000',
     ];
