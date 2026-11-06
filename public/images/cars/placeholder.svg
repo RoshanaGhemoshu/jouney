@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Journey Begins vehicle">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#ffedd5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <circle cx="660" cy="90" r="140" fill="#fb923c" opacity=".08"/>
+  <circle cx="120" cy="440" r="120" fill="#f97316" opacity=".06"/>
+  <g fill="none" stroke="#f97316" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".55" transform="translate(220 150)">
+    <path d="M30 150h300c16 0 26-12 24-28l-8-52c-3-18-18-30-36-30H250l-40-36H110L70 40H50C34 40 20 52 18 68L10 122c-2 16 8 28 20 28Z"/>
+    <circle cx="90" cy="150" r="32" fill="#fff"/>
+    <circle cx="270" cy="150" r="32" fill="#fff"/>
+    <path d="M118 6v34M206 6v34"/>
+  </g>
+  <text x="400" y="400" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="26" font-weight="800" letter-spacing="8" fill="#f97316" opacity=".6">JOURNEY BEGINS</text>
+  <text x="400" y="436" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" letter-spacing="3" fill="#64748b" opacity=".7">PHOTO COMING SOON</text>
+</svg>

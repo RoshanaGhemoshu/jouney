@@ -38,6 +38,21 @@ class Home extends Component
         $this->return_date = date('Y-m-d', strtotime('+3 days'));
     }
 
+    public function search()
+    {
+        $this->validate([
+            'pickup_date' => 'nullable|date|after_or_equal:today',
+            'return_date' => 'nullable|date|after:pickup_date',
+            'car_type' => 'nullable|in:Petrol,Diesel,EV',
+        ]);
+
+        return $this->redirectRoute('vehicles.index', array_filter([
+            'category' => $this->car_type,
+            'from' => $this->pickup_date,
+            'to' => $this->return_date,
+        ]));
+    }
+
     public function submitInquiry()
     {
         $this->validate();

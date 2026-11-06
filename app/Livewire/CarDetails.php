@@ -107,9 +107,16 @@ class CarDetails extends Component
         }
 
         $diff = $end - $start;
-        $this->duration_days = ceil($diff / (60 * 60 * 24));
+        $this->duration_days = (int) ceil($diff / (60 * 60 * 24));
 
         $tiers = $this->car->pricingTier;
+
+        if (! $tiers) {
+            $this->applied_rate = 0;
+            $this->total_price = 0;
+            $this->rate_tier_name = 'Pricing unavailable';
+            return;
+        }
 
         if ($this->duration_days >= 30) {
             $this->applied_rate = $tiers->monthly_rate;
@@ -152,6 +159,13 @@ class CarDetails extends Component
             return;
         }
 
+        $this->calculatePrice();
+
+        if ($this->total_price <= 0) {
+            $this->addError('pickup_date', 'Pricing is unavailable for this vehicle. Please contact us on WhatsApp.');
+            return;
+        }
+
         $booking = Booking::create([
             'car_id' => $this->car->id,
             'user_id' => Auth::id(),
@@ -183,10 +197,13 @@ class CarDetails extends Component
                  . "*Phone:* {$this->customer_phone}\n\n"
                  . "Please confirm my reservation. Thank you!";
         
-        $this->whatsapp_link = "https://wa.me/9779801234567?text=" . urlencode($message);
+        $this->whatsapp_link = 'https://wa.me/' . config('services.whatsapp.number') . '?text=' . urlencode($message);
         
         $this->booking_success = true;
         $this->show_booking_modal = false;
+
+        $this->unavailable_dates = $this->car->getAllUnavailableDates();
+        $this->dispatch('unavailable-dates-updated', dates: $this->unavailable_dates);
     }
 
     public function render()

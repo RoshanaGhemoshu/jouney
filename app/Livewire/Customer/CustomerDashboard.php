@@ -31,7 +31,7 @@ class CustomerDashboard extends Component
                  . "*Phone:* {$booking->customer_phone}\n\n"
                  . "Please confirm my reservation. Thank you!";
         
-        return "https://wa.me/9779801234567?text=" . urlencode($message);
+        return 'https://wa.me/' . config('services.whatsapp.number') . '?text=' . urlencode($message);
     }
 
     public function render()

@@ -23,6 +23,16 @@ return [
         ],
     ],
 
+    'social_links' => [
+        'facebook' => env('SOCIAL_FACEBOOK_URL', 'https://www.facebook.com/'),
+        'instagram' => env('SOCIAL_INSTAGRAM_URL', 'https://www.instagram.com/'),
+        'tiktok' => env('SOCIAL_TIKTOK_URL', 'https://www.tiktok.com/'),
+    ],
+
+    'whatsapp' => [
+        'number' => env('WHATSAPP_NUMBER', '9779840002796'),
+    ],
+
     'facebook' => [
     'page_id' => env('FACEBOOK_PAGE_ID'),
     'page_access_token' => env('FACEBOOK_PAGE_ACCESS_TOKEN'),

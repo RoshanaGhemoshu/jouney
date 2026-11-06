@@ -1,4 +1,4 @@
-<div class="bg-[#f8fafc] min-h-screen pt-24 pb-20">
+<div class="bg-[#f8fafc] min-h-screen pt-10 lg:pt-14 pb-20">
     <!-- 1. Hero Section (Split Grid Layout with Fading Left Border Image) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -129,13 +129,7 @@
                     <div>
                         <!-- Car image container CURVED ON ALL EDGES (rounded-2xl) -->
                         <div class="relative h-56 rounded-2xl overflow-hidden bg-slate-100 mb-5 border border-slate-100">
-                            @if($car->image_path && file_exists(public_path('storage/cars/' . $car->image_path)))
-                                <img src="{{ asset('storage/cars/' . $car->image_path) }}" alt="{{ trim(preg_replace('/\s*\([^)]*\)/', '', $car->name)) }}" class="w-full h-full object-cover rounded-2xl group-hover:scale-105 group-hover:translate-x-3 group-hover:-translate-y-1 transition-transform duration-500">
-                            @elseif($car->image_path && file_exists(public_path('images/' . $car->image_path)))
-                                <img src="{{ asset('images/' . $car->image_path) }}" alt="{{ trim(preg_replace('/\s*\([^)]*\)/', '', $car->name)) }}" class="w-full h-full object-cover rounded-2xl group-hover:scale-105 group-hover:translate-x-3 group-hover:-translate-y-1 transition-transform duration-500">
-                            @else
-                                <img src="{{ asset('images/hero/hero1.png') }}" class="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition duration-500" alt="{{ trim(preg_replace('/\s*\([^)]*\)/', '', $car->name)) }}">
-                            @endif
+                            <img src="{{ $car->image_url }}" alt="{{ trim(preg_replace('/\s*\([^)]*\)/', '', $car->name)) }}" loading="lazy" class="w-full h-full object-cover rounded-2xl group-hover:scale-105 group-hover:translate-x-3 group-hover:-translate-y-1 transition-transform duration-500">
 
                             <!-- Badges on image top left -->
                             <div class="absolute top-3 left-3 flex items-center space-x-1.5">

@@ -30,6 +30,26 @@ class Car extends Model
         'unavailable_dates' => 'array',
     ];
 
+    public function getImageUrlAttribute(): string
+    {
+        $path = $this->image_path;
+
+        if ($path && preg_match('#^https?://#', $path)) {
+            return $path;
+        }
+
+        if ($path) {
+            foreach (['storage/cars/', 'images/', ''] as $prefix) {
+                $candidate = $prefix.ltrim($path, '/');
+                if (is_file(public_path($candidate))) {
+                    return asset($candidate);
+                }
+            }
+        }
+
+        return asset('images/cars/placeholder.svg');
+    }
+
     public function pricingTier(): HasOne
     {
         return $this->hasOne(PricingTier::class);

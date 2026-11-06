@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<script>document.documentElement.classList.add('js')</script>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,7 +66,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -106,28 +107,23 @@
                 <!-- Desktop Navigation Menu -->
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="{{ route('home') }}"
-                       class="text-sm font-extrabold tracking-wide transition-colors duration-200 py-1"
-                       :class="request().routeIs('home') ? 'text-orange-500' : 'text-slate-900 hover:text-orange-500'">
+                       @class(['text-sm font-extrabold tracking-wide transition-colors duration-200 py-1', 'text-orange-500' => request()->routeIs('home'), 'text-slate-900 hover:text-orange-500' => ! request()->routeIs('home')])>
                         Home
                     </a>
                     <a href="{{ route('vehicles.index') }}"
-                       class="text-sm font-extrabold tracking-wide transition-colors duration-200 py-1"
-                       :class="request().routeIs('vehicles.index') ? 'text-orange-500' : 'text-slate-900 hover:text-orange-500'">
+                       @class(['text-sm font-extrabold tracking-wide transition-colors duration-200 py-1', 'text-orange-500' => request()->routeIs('vehicles.index'), 'text-slate-900 hover:text-orange-500' => ! request()->routeIs('vehicles.index')])>
                         Vehicles
                     </a>
                     <a href="{{ route('services') }}"
-                       class="text-sm font-extrabold tracking-wide transition-colors duration-200 py-1"
-                       :class="request().routeIs('services') ? 'text-orange-500' : 'text-slate-900 hover:text-orange-500'">
+                       @class(['text-sm font-extrabold tracking-wide transition-colors duration-200 py-1', 'text-orange-500' => request()->routeIs('services'), 'text-slate-900 hover:text-orange-500' => ! request()->routeIs('services')])>
                         Services
                     </a>
                     <a href="{{ route('testimonials') }}"
-                       class="text-sm font-extrabold tracking-wide transition-colors duration-200 py-1"
-                       :class="request().routeIs('testimonials') ? 'text-orange-500' : 'text-slate-900 hover:text-orange-500'">
+                       @class(['text-sm font-extrabold tracking-wide transition-colors duration-200 py-1', 'text-orange-500' => request()->routeIs('testimonials'), 'text-slate-900 hover:text-orange-500' => ! request()->routeIs('testimonials')])>
                         Testimonials
                     </a>
                     <a href="{{ route('contact') }}"
-                       class="text-sm font-extrabold tracking-wide transition-colors duration-200 py-1"
-                       :class="request().routeIs('contact') ? 'text-orange-500' : 'text-slate-900 hover:text-orange-500'">
+                       @class(['text-sm font-extrabold tracking-wide transition-colors duration-200 py-1', 'text-orange-500' => request()->routeIs('contact'), 'text-slate-900 hover:text-orange-500' => ! request()->routeIs('contact')])>
                         Contact
                     </a>
                 </nav>
@@ -135,7 +131,7 @@
                 <!-- Right Header Actions (CTA) -->
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="{{ route('vehicles.index') }}"
-                       class="px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition duration-200 shadow-md shadow-orange-500/20 transform hover:-translate-y-0.5">
+                       class="btn-shine px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition duration-200 shadow-md shadow-orange-500/20 transform hover:-translate-y-0.5">
                         Book Now
                     </a>
                 </div>
@@ -189,21 +185,21 @@
                         </a>
                     </div>
                     <p class="text-sm leading-relaxed text-slate-600">
-                        Experience premium, worry-free journeys with Nepal's first TALL-stack fully dynamic car rental service. Tailored rental rates matching your duration.
+                        Comfortable, reliable and fully insured car rentals across Nepal, with transparent rates that get better the longer you drive.
                     </p>
                     <!-- Social icons -->
-                    <div class="flex space-x-4 pt-2">
-                        <a href="#" class="text-slate-600 hover:text-orange-500 transition duration-200">
+                    <div class="flex gap-3 pt-2">
+                        <a href="{{ config('services.social_links.facebook') }}" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:-translate-y-0.5 transition duration-200">
                             <span class="sr-only">Facebook</span>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
                         </a>
-                        <a href="#" class="text-slate-600 hover:text-orange-500 transition duration-200">
+                        <a href="{{ config('services.social_links.instagram') }}" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:-translate-y-0.5 transition duration-200">
                             <span class="sr-only">Instagram</span>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         </a>
-                        <a href="#" class="text-slate-600 hover:text-orange-500 transition duration-200">
-                            <span class="sr-only">Twitter</span>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        <a href="{{ config('services.social_links.tiktok') }}" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:-translate-y-0.5 transition duration-200">
+                            <span class="sr-only">TikTok</span>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2V2h-3.4v13.7a2.9 2.9 0 1 1-2-2.7V9.5a6.3 6.3 0 1 0 5.4 6.2V8.8a8.2 8.2 0 0 0 4.8 1.5V6.9l-1-.2Z"/></svg>
                         </a>
                     </div>
                 </div>
@@ -224,9 +220,9 @@
                     <h3 class="font-outfit font-semibold text-slate-900 text-base mb-4">Support</h3>
                     <ul class="space-y-2.5 text-sm">
                         <li><a href="{{ route('contact') }}" class="hover:text-orange-500 transition duration-200">Help Center</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-orange-500 transition duration-200">FAQs &amp; Inquiry</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-orange-500 transition duration-200">Terms &amp; Conditions</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-orange-500 transition duration-200">Privacy Policy</a></li>
+                        <li><a href="{{ route('contact') }}#faq" class="hover:text-orange-500 transition duration-200">FAQs &amp; Inquiry</a></li>
+                        <li><a href="{{ route('terms') }}" class="hover:text-orange-500 transition duration-200">Terms &amp; Conditions</a></li>
+                        <li><a href="{{ route('privacy') }}" class="hover:text-orange-500 transition duration-200">Privacy Policy</a></li>
                     </ul>
                 </div>
 
@@ -243,7 +239,7 @@
                         <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.739-1.451L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.57 1.986 14.105.965 11.486.965c-5.44 0-9.866 4.372-9.87 9.802 0 1.634.45 3.228 1.302 4.62l-.37 1.354-.74 2.704.03.03 2.77-.723.95-.248zm12.355-6.666c-.33-.164-1.94-.954-2.24-1.063-.3-.11-.52-.164-.74.164-.22.328-.85 1.063-1.04 1.281-.19.219-.38.246-.71.082-.33-.164-1.39-.512-2.648-1.633-.98-.873-1.64-1.952-1.83-2.28-.19-.328-.02-.505.14-.668.15-.148.33-.328.5-.492.17-.164.22-.273.33-.45.11-.18.05-.328-.02-.492-.08-.164-.74-1.782-1.01-2.434-.27-.65-.54-.56-.74-.57l-.63-.01c-.22 0-.58.082-.88.41-.3.328-1.15 1.12-1.15 2.732 0 1.612 1.17 3.17 1.33 3.388.16.219 2.3 3.511 5.57 4.92.78.336 1.39.537 1.86.685.78.247 1.49.212 2.05.128.62-.093 1.94-.793 2.22-1.557.27-.764.27-1.42.19-1.557-.08-.137-.3-.219-.63-.383z"/>
                         </svg>
-                        <a href="https://wa.me/9779840002796" target="_blank" rel="noopener" class="text-slate-700 font-medium hover:text-emerald-500 transition">WhatsApp: +977 9840002796</a>
+                        <a href="https://wa.me/{{ config('services.whatsapp.number') }}" target="_blank" rel="noopener" class="text-slate-700 font-medium hover:text-emerald-500 transition">WhatsApp: +977 9840002796</a>
                     </div>
                     <div class="flex items-start space-x-2.5">
                         <svg class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -261,19 +257,21 @@
                 </div>
             </div>
             
-            <div class="border-t border-slate-900 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-600">
+            <div class="border-t border-slate-200 mt-12 pt-8 pb-16 md:pb-0 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
                 <p>&copy; {{ date('Y') }} Journey Begins Car Rental. All rights reserved.</p>
-                <div class="flex space-x-4 mt-4 md:mt-0">
-                    <a href="{{ route('contact') }}" class="hover:text-slate-400">Terms of Service</a>
-                    <a href="{{ route('contact') }}" class="hover:text-slate-400">Privacy Policy</a>
+                <div class="flex gap-6">
+                    <a href="{{ route('terms') }}" class="hover:text-orange-500 transition">Terms of Service</a>
+                    <a href="{{ route('privacy') }}" class="hover:text-orange-500 transition">Privacy Policy</a>
                 </div>
             </div>
         </div>
     </footer>
 
     {{-- Floating WhatsApp Button --}}
-    <a href="https://wa.me/9779840002796" target="_blank" rel="noopener"
-       class="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3.5 rounded-full shadow-2xl z-[9990] flex items-center gap-2 group transition duration-300 hover:scale-105">
+    <a href="https://wa.me/{{ config('services.whatsapp.number') }}" target="_blank" rel="noopener"
+       aria-label="Chat with us on WhatsApp"
+       class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3 sm:p-3.5 rounded-full shadow-xl shadow-emerald-500/30 z-[9990] flex items-center gap-2 group transition duration-300 hover:scale-105">
+        <span class="absolute inset-0 rounded-full bg-[#25D366] animate-ping-soft -z-10" aria-hidden="true"></span>
         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.739-1.451L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.57 1.986 14.105.965 11.486.965c-5.44 0-9.866 4.372-9.87 9.802 0 1.634.45 3.228 1.302 4.62l-.37 1.354-.74 2.704.03.03 2.77-.723.95-.248zm12.355-6.666c-.33-.164-1.94-.954-2.24-1.063-.3-.11-.52-.164-.74.164-.22.328-.85 1.063-1.04 1.281-.19.219-.38.246-.71.082-.33-.164-1.39-.512-2.648-1.633-.98-.873-1.64-1.952-1.83-2.28-.19-.328-.02-.505.14-.668.15-.148.33-.328.5-.492.17-.164.22-.273.33-.45.11-.18.05-.328-.02-.492-.08-.164-.74-1.782-1.01-2.434-.27-.65-.54-.56-.74-.57l-.63-.01c-.22 0-.58.082-.88.41-.3.328-1.15 1.12-1.15 2.732 0 1.612 1.17 3.17 1.33 3.388.16.219 2.3 3.511 5.57 4.92.78.336 1.39.537 1.86.685.78.247 1.49.212 2.05.128.62-.093 1.94-.793 2.22-1.557.27-.764.27-1.42.19-1.557-.08-.137-.3-.219-.63-.383z"/>
         </svg>
@@ -285,9 +283,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
+        // Livewire re-renders reset GSAP inline styles; keep already revealed elements visible.
+        document.addEventListener('livewire:init', () => {
+            Livewire.hook('morph.updating', ({ el, toEl }) => {
+                if (el.hasAttribute?.('data-revealed')) toEl.setAttribute('data-revealed', '');
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
-            if (typeof gsap !== 'undefined') {
+            if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.documentElement.classList.remove('js');
+                return;
+            }
+
+            {
                 gsap.registerPlugin(ScrollTrigger);
+
+                const markRevealed = (el) => el.setAttribute('data-revealed', '');
                 
                 // Slide up reveal animation for single text/elements
                 gsap.utils.toArray('.gsap-reveal').forEach(elem => {
@@ -300,9 +312,10 @@
                             ease: "power2.out", 
                             scrollTrigger: {
                                 trigger: elem,
-                                start: "top 85%",
-                                toggleActions: "play none none reverse"
-                            }
+                                start: "top 90%",
+                                once: true
+                            },
+                            onComplete: () => markRevealed(elem)
                         }
                     );
                 });
@@ -320,9 +333,10 @@
                             ease: "back.out(1.2)", 
                             scrollTrigger: {
                                 trigger: container,
-                                start: "top 85%",
-                                toggleActions: "play none none reverse"
-                            }
+                                start: "top 90%",
+                                once: true
+                            },
+                            onComplete: () => items.forEach(markRevealed)
                         }
                     );
                 });
@@ -332,13 +346,5 @@
 
     <!-- Flatpickr JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            flatpickr(".flatpickr-input", {
-                dateFormat: "Y-m-d",
-                minDate: "today",
-            });
-        });
-    </script>
 </body>
 </html>

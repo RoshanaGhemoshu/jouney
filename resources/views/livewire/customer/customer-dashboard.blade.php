@@ -83,7 +83,7 @@
                                                 <span>Verify</span>
                                             </a>
                                             <!-- Cancel button -->
-                                            <button wire:click="cancelBooking({{ $booking->id }}')" wire:confirm="Are you sure you want to cancel this booking?" class="text-xs text-red-400 hover:text-red-300 font-medium transition">
+                                            <button wire:click="cancelBooking({{ $booking->id }})" wire:confirm="Are you sure you want to cancel this booking?" class="text-xs text-red-400 hover:text-red-300 font-medium transition">
                                                 Cancel
                                             </button>
                                         @endif
