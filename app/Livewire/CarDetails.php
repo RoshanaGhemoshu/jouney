@@ -201,6 +201,9 @@ class CarDetails extends Component
         
         $this->booking_success = true;
         $this->show_booking_modal = false;
+
+        $this->unavailable_dates = $this->car->getAllUnavailableDates();
+        $this->dispatch('unavailable-dates-updated', dates: $this->unavailable_dates);
     }
 
     public function render()

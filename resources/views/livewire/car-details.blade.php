@@ -160,7 +160,8 @@
                                     const base = { dateFormat: 'Y-m-d', disable: disabled, disableMobile: true };
                                     const ret = flatpickr($refs.return, { ...base, minDate: new Date().fp_incr(1), onChange: (_, value) => $wire.set('return_date', value) });
                                     flatpickr($refs.pickup, { ...base, minDate: 'today', onChange: (dates, value) => { $wire.set('pickup_date', value); if (dates[0]) ret.set('minDate', new Date(dates[0]).fp_incr(1)); } });
-                                 ">
+                                 "
+                                 @unavailable-dates-updated.window="$refs.pickup._flatpickr.set('disable', $event.detail.dates); $refs.return._flatpickr.set('disable', $event.detail.dates)">
                                 <div class="space-y-1">
                                     <label class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest block">PICKUP DATE</label>
                                     <input x-ref="pickup" type="text" readonly wire:model="pickup_date" class="w-full bg-slate-100/80 border border-slate-200/70 rounded-xl py-2 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">

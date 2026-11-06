@@ -283,6 +283,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
+        // Livewire re-renders reset GSAP inline styles; keep already revealed elements visible.
+        document.addEventListener('livewire:init', () => {
+            Livewire.hook('morph.updating', ({ el, toEl }) => {
+                if (el.hasAttribute?.('data-revealed')) toEl.setAttribute('data-revealed', '');
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 document.documentElement.classList.remove('js');
@@ -291,6 +298,8 @@
 
             {
                 gsap.registerPlugin(ScrollTrigger);
+
+                const markRevealed = (el) => el.setAttribute('data-revealed', '');
                 
                 // Slide up reveal animation for single text/elements
                 gsap.utils.toArray('.gsap-reveal').forEach(elem => {
@@ -305,7 +314,8 @@
                                 trigger: elem,
                                 start: "top 90%",
                                 once: true
-                            }
+                            },
+                            onComplete: () => markRevealed(elem)
                         }
                     );
                 });
@@ -325,7 +335,8 @@
                                 trigger: container,
                                 start: "top 90%",
                                 once: true
-                            }
+                            },
+                            onComplete: () => items.forEach(markRevealed)
                         }
                     );
                 });

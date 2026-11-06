@@ -100,12 +100,13 @@
                         <!-- Pickup Date -->
                         <div class="space-y-1.5">
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Pickup Date</label>
-                            <div class="relative" x-data x-init="flatpickr($refs.pickup, {dateFormat: 'Y-m-d', minDate: 'today'})">
+                            <div class="relative" x-data x-init="flatpickr($refs.pickup, {dateFormat: 'Y-m-d', minDate: 'today', onChange: (dates) => { const ret = document.querySelector('[x-ref=return]')?._flatpickr; if (ret && dates[0]) ret.set('minDate', new Date(dates[0]).fp_incr(1)); }})">
                                 <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                                 </span>
                                 <input x-ref="pickup" type="text" wire:model.live="pickup_date" placeholder="Select date" class="flatpickr-input w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
                             </div>
+                            @error('pickup_date') <span class="text-xs font-semibold text-red-500 block">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Return Date -->
@@ -117,6 +118,7 @@
                                 </span>
                                 <input x-ref="return" type="text" wire:model.live="return_date" placeholder="Select date" class="flatpickr-input w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:bg-white transition duration-200">
                             </div>
+                            @error('return_date') <span class="text-xs font-semibold text-red-500 block">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Car Type -->

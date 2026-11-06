@@ -127,6 +127,12 @@ main > * {
     opacity: 0;
 }
 
+.js .gsap-reveal[data-revealed],
+.js .gsap-stagger-item[data-revealed] {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;

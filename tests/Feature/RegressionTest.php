@@ -109,7 +109,9 @@ class RegressionTest extends TestCase
             ->set('customer_email', 'john@example.com')
             ->set('customer_phone', '9840000000')
             ->call('confirmBooking')
-            ->assertHasNoErrors();
+            ->assertHasNoErrors()
+            ->assertDispatched('unavailable-dates-updated')
+            ->assertSet('unavailable_dates', fn ($dates) => in_array(now()->addDays(3)->toDateString(), $dates, true));
 
         $this->assertSame(2000.0, (float) Booking::first()->total_price);
     }
@@ -125,6 +127,17 @@ class RegressionTest extends TestCase
             ->set('return_date', $to)
             ->call('search')
             ->assertRedirect(route('vehicles.index', ['category' => 'EV', 'from' => $from, 'to' => $to]));
+    }
+
+    public function test_home_search_shows_error_for_invalid_date_range(): void
+    {
+        Livewire::test(Home::class)
+            ->set('pickup_date', now()->addDays(5)->toDateString())
+            ->set('return_date', now()->addDays(2)->toDateString())
+            ->call('search')
+            ->assertHasErrors(['return_date'])
+            ->assertNoRedirect()
+            ->assertSee('The return date field must be a date after pickup date.');
     }
 
     public function test_car_image_url_falls_back_to_placeholder(): void
